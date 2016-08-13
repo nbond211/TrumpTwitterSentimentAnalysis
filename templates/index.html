@@ -9,6 +9,13 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Trump Twitter Sentiment Analysis</h1>
+            </div>
+        </div>
+    </div>
 
     {% for tweet in tweets %}
         <div class="row">
@@ -21,8 +28,19 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <span id="tweet-{{ tweet.id }}">{{ tweet.text }}</span>
-                        <button onclick="analyzeSentiment('{{ tweet.id }}')" type="button" class="btn btn-primary pull-right">Analyze Sentiment</button>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <span id="tweet-{{ tweet.id }}">{{ tweet.text }}</span>
+                                <button onclick="analyzeSentiment('{{ tweet.id }}')" type="button"
+                                        class="btn btn-primary pull-right">Analyze Sentiment
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <canvas class="" id="chart-{{ tweet.id }}" width="1" height="1"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,6 +50,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
