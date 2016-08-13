@@ -10,7 +10,8 @@ class Sentiment:
     def serialize(self):
         return {
             'positive': self.positive,
-            'negative': self.negative
+            'negative': self.negative,
+            'neutral': self.neutral
         }
 
 
