@@ -10,8 +10,6 @@ function analyzeSentiment(tweetId) {
 function createVisualization(positive, negative, neutral, tweetId) {
     var ctx = $('#chart-' + tweetId);
 
-    console.log(ctx);
-
     var data = {
         labels: [
             "Negative",
