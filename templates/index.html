@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
 </head>
 <body>
 <div class="container">
@@ -17,21 +19,30 @@
         </div>
     </div>
 
-    {% for tweet in tweets %}
+    {% for tweet in trumpTweetsViewModel.tweets %}
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div class="media-left">
-                            <img class="media-object" src="{{ tweet.user.profile_image_url }}">
-                            <h3 class="panel-title">{{ tweet.user.screen_name }}:</h3>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img class="media-object" src="{{ trumpTweetsViewModel.profileImage }}">
+                            </div>
+                            <div class="col-md-11">
+                                <h3 class="panel-title">{{ trumpTweetsViewModel.screenName }}:</h3>
+                                <p class="tweet-date">{{ moment(tweet['dateCreated']).format('MMMM Do YYYY, h:mm:ss a') }}</p>
+                            </div>
                         </div>
+
+
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                <span id="tweet-{{ tweet.id }}">{{ tweet.text }}</span>
-                                <button onclick="analyzeSentiment('{{ tweet.id }}')" type="button"
+                            <div class="col-md-8 col-md-offset-1">
+                                <span class="tweet-text" id="tweet-{{ tweet['id'] }}">{{ tweet['text'] }}</span>
+                            </div>
+                            <div class="col-md-1 col-md-offset-1">
+                                <button onclick="analyzeSentiment('{{ tweet['id'] }}')" type="button"
                                         class="btn btn-primary pull-right">Analyze Sentiment
                                 </button>
                             </div>

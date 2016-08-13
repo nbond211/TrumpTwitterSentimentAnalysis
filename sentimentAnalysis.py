@@ -1,6 +1,5 @@
 import unirest
 
-
 class Sentiment:
     def __init__(self, positive, negative, neutral):
         self.positive = int((positive * 100))
