@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trump Tweets Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    {% for tweet in tweets %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="media-left">
+                            <img class="media-object" src="{{ tweet.user.profile_image_url }}">
+                            <h3 class="panel-title">{{ tweet.user.screen_name }}:</h3>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <span id="tweet-{{ tweet.id }}">{{ tweet.text }}</span>
+                        <button onclick="analyzeSentiment('{{ tweet.id }}')" type="button" class="btn btn-primary pull-right">Analyze Sentiment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
